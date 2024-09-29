@@ -1,2 +1,73 @@
-<script src="https://cdn.logwork.com/widget/digital.js"></script>
-<a href="https://logwork.com/current-time-in-lagos-nigeria" class="digital-clock" data-style="round" data-size="500" data-timezone="Africa/Lagos" data-language="en">Welcome Savvy</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time and Date Widget</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .widget {
+            border: 1.5px solid black;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+        .greeting {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .date {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .time {
+            margin-top: 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div id="greeting" class="greeting"></div>
+        <div id="date" class="date"></div>
+        <div id="time" class="time"></div>
+    </div>
+
+    <script>
+        function updateWidget() {
+            const greeting = document.getElementById("greeting");
+            const dateElement = document.getElementById("date");
+            const timeElement = document.getElementById("time");
+
+            const now = new Date();
+
+            // Set greeting
+            const hours = now.getHours();
+            if (hours < 12) {
+                greeting.textContent = "GOOD MORNING RIDWAN";
+            } else if (hours < 18) {
+                greeting.textContent = "GOOD AFTERNOON RIDWAN";
+            } else {
+                greeting.textContent = "GOOD EVENING RIDWAN";
+            }
+
+            // Set date
+            const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+            dateElement.textContent = now.toLocaleDateString("en-US", options).toUpperCase();
+
+            // Set time
+            const timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
+            timeElement.textContent = now.toLocaleTimeString("en-US", timeOptions);
+        }
+
+        setInterval(updateWidget, 1000);
+        updateWidget();
+    </script>
+</body>
+</html>
